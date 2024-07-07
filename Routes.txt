@@ -1,0 +1,270 @@
+import { Route } from "react-router-dom";
+import { IMenu } from "../../Components/SideMenu/Menu/MenuSection";
+import { GrindrodAvs } from "../../Views/GrindrodAvs/GrindrodAvs";
+import { XcomIn } from "../../Views/Xcom/XcomIn/XcomIn";
+import { DirectoryBrowser } from "../../Views/DirectoryBrowser/DirectoryBrowser";
+import { Icon } from "@fluentui/react/lib/Icon";
+import { LiveTransactions } from "../../Views/LiveTransactions/LiveTransactions";
+import { TransactionalFileQueue } from "../../Views/TransactionalFileQueue/TransactionalFileQueue";
+import { NoneTransactionalFileQueue } from "../../Views/NoneTransactionalFileQueue/NoneTransactionalFileQueue";
+import { XcomOutView } from "../../Views/XcomOutView/XcomOutView";
+import { CreditAuth } from "../../Views/CreditAuth/CreditAuth";
+import UserManagement from "../../Views/UserManagement/UserManagement";
+import { UserAuditReport } from "../../Views/UserAuditReport/UserAuditReport";
+import ViewTasks from "../../Views/Tasks/ViewTasks";
+
+export const routes: IMenu[] = [
+  {
+    name: "Main Menu",
+    subMenu: [
+      {
+        name: "Dashboard",
+        url: "/",
+        visable: true,
+        icon: <Icon iconName="ViewDashboard" />,
+      },
+      {
+        name: "Channel Monitor",
+        accessCodes: ["c_mpt_Appl"],
+        icon: <Icon iconName="TVMonitor" />,
+        subMenu: [
+          {
+            name: "Grindrod AVS files",
+            url: "GrindrodAvs",
+            component: <GrindrodAvs />,
+            accessCodes: ["c_mpt_Appl"],
+            icon: <Icon iconName="VerifiedBrand" />,
+            visable: true,
+          },
+          {
+            name: "Live Transactions",
+            url: "LiveTransactions",
+            component: <LiveTransactions />,
+            accessCodes: ["c_mpt_Appl"],
+            icon: <Icon iconName="Money" />,
+            visable: true,
+          },
+          {
+            name: "Financial File Queue",
+            url: "TransactionalFileQueue",
+            component: <TransactionalFileQueue />,
+            accessCodes: ["c_mpt_Appl"],
+            icon: <Icon iconName="BuildQueueNew" />,
+            visable: true,
+          },
+          {
+            name: "Non-Financial File Queue",
+            url: "NoneTransactionalFileQueue",
+            component: <NoneTransactionalFileQueue />,
+            accessCodes: ["c_mpt_Appl"],
+            icon: <Icon iconName="BuildQueue" />,
+            visable: true,
+          },
+        ],
+        visable: true,
+      },
+      {
+        name: "Tasks",
+        visable: true,
+        icon: <Icon iconName="Taskboard" />,
+        accessCodes: ["c_mpt_Appl"],
+        subMenu: [
+          {
+            name: "View Tasks",
+            component: <ViewTasks />,
+            icon: <Icon iconName="View" />,
+            visable: true,
+            accessCodes: ["c_mpt_Appl"],
+            url: "/view-tasks",
+          },
+          {
+            name: "Overdue Tasks",
+            component: <ViewTasks />,
+            icon: <Icon iconName="RingerRemove" />,
+            visable: true,
+            accessCodes: ["c_mpt_Appl"],
+            url: "/overdue-tasks",
+          },
+          {
+            name: "Error Tasks",
+            component: <ViewTasks />,
+            icon: <Icon iconName="ErrorBadge" />,
+            visable: true,
+            accessCodes: ["c_mpt_Appl"],
+            url: "/error-tasks",
+          },
+        ],
+      },
+      {
+        name: "Services",
+        visable: true,
+        icon: <Icon iconName="AzureServiceEndpoint" />,
+        accessCodes: ["c_mpt_Appl"],
+        subMenu: [
+          {
+            name: "File Watcher Services",
+            component: <ViewTasks />,
+            icon: <Icon iconName="RedEye" />,
+            visable: true,
+            accessCodes: ["c_mpt_Appl"],
+            url: "/file-watcher-services",
+          },
+          {
+            name: "Importer Services",
+            component: <ViewTasks />,
+            icon: <Icon iconName="CloudImportExport" />,
+            visable: true,
+            accessCodes: ["c_mpt_Appl"],
+            url: "/importer-services",
+          },
+          {
+            name: "File Out Schedule Services",
+            component: <ViewTasks />,
+            icon: <Icon iconName="PageCheckedOut" />,
+            visable: true,
+            accessCodes: ["c_mpt_Appl"],
+            url: "/file-out-schedule-services",
+          },
+        ],
+      },
+      {
+        name: "Xcom",
+        visable: true,
+        icon: <Icon iconName="ArrangeSendToBack" />,
+        subMenu: [
+          {
+            name: "Out",
+            url: "xcom-out",
+            component: <XcomOutView />,
+            icon: <Icon iconName="PageCheckedOut" />,
+            accessCodes: ["c_mpt_Appl"],
+            visable: true,
+          },
+          {
+            name: "In",
+            url: "xcom-in",
+            component: <XcomIn />,
+            icon: <Icon iconName="PageCheckedIn" />,
+            accessCodes: ["c_mpt_Appl"],
+            visable: true,
+          },
+        ],
+      },
+      {
+        name: "Channel Files",
+        visable: true,
+        icon: <Icon iconName="ArrangeSendToBack" />,
+        subMenu: [
+          {
+            name: "Financial Files",
+            url: "financial-files",
+            component: <XcomOutView />,
+            icon: <Icon iconName="PageCheckedOut" />,
+            accessCodes: ["c_mpt_Appl"],
+            visable: true,
+          },
+          {
+            name: "Non-Financial Files",
+            url: "non-financial-files",
+            component: <XcomIn />,
+            icon: <Icon iconName="PageCheckedIn" />,
+            accessCodes: ["c_mpt_Appl"],
+            visable: true,
+          },
+        ],
+      },
+      {
+        name: "Channel Support Functions",
+        visable: true,
+        icon: <Icon iconName="ArrangeSendToBack" />,
+        subMenu: [
+          {
+            name: "Duplicates",
+            url: "duplicates",
+            component: <XcomOutView />,
+            icon: <Icon iconName="PageCheckedOut" />,
+            accessCodes: ["c_mpt_Appl"],
+            visable: true,
+          },
+          {
+            name: "Credit Auth",
+            url: "credit-auth",
+            component: <CreditAuth />,
+            icon: <Icon iconName="Money" />,
+            accessCodes: ["c_mpt_Appl"],
+            visable: true,
+          },
+          {
+            name: "Debicheck Resubmit",
+            url: "debicheck-resubmit",
+            component: <XcomIn />,
+            icon: <Icon iconName="PageCheckedIn" />,
+            accessCodes: ["c_mpt_Appl"],
+            visable: true,
+          },
+          {
+            name: "Directory Browser",
+            icon: <Icon iconName="FabricFolder" />,
+            component: <DirectoryBrowser />,
+            visable: true,
+            url: "directory-browser",
+            accessCodes: [],
+          },
+        ],
+      },
+      {
+        name: "Admin",
+        icon: <Icon iconName="Admin" />,
+        visable: true,
+        subMenu: [
+          {
+            name: "User Management",
+            url: "user-management",
+            component: <UserManagement />,
+            icon: <Icon iconName="PeopleAdd" />,
+            accessCodes: ["c_mpt_Appl"],
+            visable: true,
+          },
+          {
+            name: "User Audit Report",
+            url: "user-audit-report",
+            component: <UserAuditReport />,
+            icon: <Icon iconName="ReportDocument" />,
+            accessCodes: ["c_mpt_Appl"],
+            visable: true,
+          },
+        ],
+      },
+    ],
+    visable: true,
+  },
+];
+
+export const generateRoutes = (menuItems: IMenu[]): JSX.Element[] => {
+  return menuItems.flatMap((item) => {
+    if (item.subMenu) {
+      return generateRoutes(item.subMenu);
+    } else {
+      return <Route key={item.url} path={item.url} element={item.component} />;
+    }
+  });
+};
+
+export const filterRoutes = (rights: string[], routes: IMenu[]): IMenu[] => {
+  const hasAccess = (accessCodes?: string[]) => {
+    if (!accessCodes || accessCodes.length === 0) return true;
+    return accessCodes.some(code => rights.includes(code));
+  };
+
+  const filterSubMenu = (menu: IMenu[]): IMenu[] => {
+    return menu
+      .map(item => ({
+        ...item,
+        visable: item.name === "Dashboard" || hasAccess(item.accessCodes),
+        subMenu: item.subMenu ? filterSubMenu(item.subMenu) : [],
+      }))
+      .filter(item => item.visable);
+  };
+
+  return filterSubMenu(routes);
+};
